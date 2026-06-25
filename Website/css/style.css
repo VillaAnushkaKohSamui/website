@@ -967,7 +967,7 @@ p { font-size: 1rem; line-height: 1.85; color: var(--grey-text); }
   .gallery-grid__item:first-child { grid-column: span 2; }
   .ratings-bar { gap: 1rem; flex-wrap: wrap; padding: 1.25rem 1rem; }
   .ratings-divider { display: none; }
-  .platforms-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1rem; padding-top: 2rem; }
+  .platforms-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; padding-top: 2rem; justify-items: center; }
   .contact-grid, .location-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
