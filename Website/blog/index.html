@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal | Villa Anushka Koh Samui</title>
+  <meta name="description" content="Travel guides, celebration planning tips, villa life stories and luxury travel inspiration from Villa Anushka Koh Samui." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .blog-hero { text-align: center; }
+    .blog-cats {
+      display: flex; gap: 0.5rem; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 3rem;
+    }
+    .blog-cat {
+      padding: 0.4rem 1.25rem;
+      font-family: var(--font-sans); font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; border: 1px solid var(--border);
+      background: transparent; color: var(--cream);
+      transition: var(--transition);
+    }
+    .blog-cat.active, .blog-cat:hover {
+      background: var(--cream); color: var(--charcoal); border-color: var(--cream);
+    }
+    .blog-featured {
+      display: grid; grid-template-columns: 1.3fr 1fr;
+      gap: 2rem; margin-bottom: 4rem;
+    }
+    .blog-featured__img {
+      height: 460px; overflow: hidden;
+    }
+    .blog-featured__img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .blog-featured:hover .blog-featured__img img { transform: scale(1.03); }
+    .blog-featured__body {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 2rem 0;
+    }
+    .blog-featured__body h2 { font-size: 2rem; line-height: 1.25; margin-bottom: 1rem; }
+    .blog-featured__body p { color: var(--grey-text); margin-bottom: 1.5rem; line-height: 1.7; }
+    .blog-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 4rem 0 3rem;
+    }
+    .blog-section-title {
+      font-family: var(--font-sans); font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .blog-section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    @media (max-width: 768px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured__img { height: 280px; }
+      .blog-featured__body { padding: 0; }
+      .blog-featured__body h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="../index.html" class="nav__logo"><img src="../images/logo.svg" alt="Villa Anushka" /></a>
+    <ul class="nav__links">
+      <li><a href="../index.html">Home</a></li><li><a href="../the-villa.html">The Villa</a></li>
+      <li><a href="../experiences.html">Experiences</a></li><li><a href="../gallery.html">Gallery</a></li>
+      <li><a href="../reviews.html">Reviews</a></li><li><a href="../location.html">Location</a></li>
+      <li><a href="index.html">Blog</a></li><li><a href="../contact.html" class="nav__book">Book Now</a></li>
+    </ul>
+    <div class="nav__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="nav__mobile" id="mobileNav">
+    <button class="nav__close" id="navClose">&times;</button>
+    <a href="../index.html">Home</a><a href="../the-villa.html">The Villa</a><a href="../experiences.html">Experiences</a>
+    <a href="../gallery.html">Gallery</a><a href="../reviews.html">Reviews</a><a href="../location.html">Location</a>
+    <a href="index.html">Blog</a><a href="../contact.html">Book Now</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero__bg" style="background-image: url('../images/hero-terrace-dusk.jpg');"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="eyebrow">Stories &amp; Guides</span>
+      <h1>The Journal</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Category filter -->
+      
+
+      <!-- Featured post -->
+      <div class="blog-featured fade-up" data-category="koh-samui">
+        <div class="blog-featured__img">
+          <img src="../images/island-life-bay-view.jpg" alt="Koh Samui bay view" />
+        </div>
+        <div class="blog-featured__body">
+          
+          <h2>Things to Do in Koh Samui</h2>
+          <p>White-sand beaches, jungle waterfalls, lively markets, Muay Thai, Ang Thong Marine Park and some very good spas. Whether you're visiting with family, friends or a partner, here's what's worth putting on your list.</p>
+          <a href="things-to-do-koh-samui.html" class="blog-card__link">Read the guide</a>
+        </div>
+      </div>
+
+      
+      <div class="blog-grid">
+
+        <div class="blog-card fade-up">
+          <div class="blog-card__img">
+            <img src="../images/boat-trips.jpg" alt="Best time to visit Koh Samui" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <h3>Best Time to Visit Koh Samui</h3>
+            <p>A month-by-month guide to the weather, the seasons, and when to book - so your group trip lands in the right window.</p>
+            <a href="best-time-to-visit-koh-samui.html" class="blog-card__link">Read more</a>
+          </div>
+        </div>
+
+        <div class="blog-card fade-up">
+          <div class="blog-card__img">
+            <img src="../images/villa-exterior-wide.jpg" alt="Family reunion villa Koh Samui" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <h3>The Ultimate Family Reunion Destination: Why Koh Samui Belongs on Your Shortlist</h3>
+            <p>Multi-generational, multi-city, multi-timezone - a private villa in Koh Samui solves every logistical challenge and puts everyone in the same place with nowhere else to be.</p>
+            <a href="family-reunion-koh-samui.html" class="blog-card__link">Read more</a>
+          </div>
+        </div>
+
+        <div class="blog-card fade-up">
+          <div class="blog-card__img">
+            <img src="../images/intro-main-pool-service.jpg" alt="Private villa infinity pool Koh Samui" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <h3>Why a Private Villa in Koh Samui Works for Group Holidays</h3>
+            <p>The space, the value, the flexibility, and why Koh Samui works so well for groups - an honest look at what a private villa changes.</p>
+            <a href="article3-10-reasons-private-villa.html" class="blog-card__link">Read more</a>
+          </div>
+        </div>
+
+        <div class="blog-card fade-up">
+          <div class="blog-card__img">
+            <img src="../images/celebration.jpg" alt="Best restaurants and yacht charters Koh Samui" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <h3>Best Restaurants, Yachts and Experiences for Celebrations in Koh Samui</h3>
+            <p>Where to eat, what to charter, and which experiences tend to define a celebration trip - a practical guide from the Villa Anushka team.</p>
+            <a href="article4-restaurants-yachts.html" class="blog-card__link">Read more</a>
+          </div>
+        </div>
+
+        <div class="blog-card fade-up">
+          <div class="blog-card__img">
+            <img src="../images/bubble-bath-wellness.jpg" alt="Girls trip hen party Koh Samui" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <h3>Planning a Girls' Trip to Koh Samui</h3>
+            <p>Spa days, sunset cocktails, a private villa with sea views, and a hen party destination that delivers. Everything you need to plan the trip you've been talking about.</p>
+            <a href="girls-trip-koh-samui.html" class="blog-card__link">Read more</a>
+          </div>
+        </div>
+
+        <div class="blog-card fade-up">
+          <div class="blog-card__img">
+            <img src="../images/terrace-drinks-view.jpg" alt="Boys trip Koh Samui villa terrace" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <h3>Boys' Trip to Koh Samui: Adventure, Luxury, and No Compromises</h3>
+            <p>Jet skis, Muay Thai, Ang Thong, Santiburi golf, a stag do on a private yacht - and a villa to come back to. The complete guide to a boys' trip or stag do done properly.</p>
+            <a href="boys-trip-koh-samui.html" class="blog-card__link">Read more</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="banner">
+    <div class="banner__bg" style="background-image: url('../images/hero-terrace-dusk.jpg');"></div>
+    <div class="banner__overlay"></div>
+    <div class="banner__content fade-up">
+      <span class="eyebrow">Ready to Experience It?</span>
+      <h2>Stop reading about Koh Samui.<br>Start living it.</h2>
+      <p>Check availability for your dates and let the Villa Anushka team start planning your stay.</p>
+      <a href="../contact.html" class="btn btn--gold">Enquire Now</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="nav__logo"><img src="../images/logo.svg" alt="Villa Anushka" /></a><div class="footer__social"><a href="https://www.instagram.com/villaanushkakohsamui" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/people/Villa-Anushka-Koh-Samui/100077889074319/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.271h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a><a href="https://wa.me/351912667513" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
+        <div class="footer__col"><h4>The Villa</h4><ul><li><a href="../the-villa.html">Overview</a></li><li><a href="../gallery.html">Gallery</a></li></ul></div>
+        <div class="footer__col"><h4>Explore</h4><ul><li><a href="../experiences.html">Experiences</a></li><li><a href="../reviews.html">Reviews</a></li></ul></div>
+        <div class="footer__col"><h4>Book</h4><ul><li><a href="../contact.html">Enquire</a></li><li><a href="https://www.airbnb.com/rooms/553312528562108151" target="_blank">Airbnb</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>&copy; 2026 Villa Anushka Koh Samui</span> &nbsp;&middot;&nbsp; <a href="../privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="../terms.html">Terms</a></div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Category filter
+    const cats = document.querySelectorAll('.blog-cat');
+    const featured = document.querySelector('.blog-featured[data-category]');
+    const cards = document.querySelectorAll('.blog-card[data-category]');
+    const dividers = document.querySelectorAll('.blog-divider');
+    const sectionTitles = document.querySelectorAll('.blog-section-title');
+
+    cats.forEach(cat => {
+      cat.addEventListener('click', () => {
+        cats.forEach(c => c.classList.remove('active'));
+        cat.classList.add('active');
+        const filter = cat.dataset.filter;
+
+        // Featured
+        if (featured) {
+          featured.style.display = (filter === 'all' || featured.dataset.category === filter) ? '' : 'none';
+        }
+        // Cards
+        cards.forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+        });
+        // Hide empty section titles and dividers when filtered
+        document.querySelectorAll('.blog-grid').forEach(grid => {
+          const visibleCards = grid.querySelectorAll('.blog-card:not([style*="display: none"])');
+          const titleEl = grid.previousElementSibling;
+          const dividerEl = titleEl ? titleEl.previousElementSibling : null;
+          const visible = filter === 'all' || visibleCards.length > 0;
+          if (titleEl && titleEl.classList.contains('blog-section-title')) titleEl.style.display = visible ? '' : 'none';
+          if (dividerEl && dividerEl.classList.contains('blog-divider')) dividerEl.style.display = visible ? '' : 'none';
+        });
+        // Handle featured divider
+        const featuredDivider = featured ? featured.nextElementSibling : null;
+        if (featuredDivider && featuredDivider.classList.contains('blog-divider')) {
+          featuredDivider.style.display = (filter === 'all' || featured.style.display !== 'none') ? '' : 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
