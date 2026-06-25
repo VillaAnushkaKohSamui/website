@@ -9,6 +9,8 @@
   <style>
     .all-reviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
     @media (max-width: 768px) { .all-reviews { grid-template-columns: 1fr; } }
+    /* Prevent black empty space on mobile — stats section is always in view on load */
+    .section--dark .fade-up { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
