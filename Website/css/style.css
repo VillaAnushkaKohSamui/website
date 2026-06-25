@@ -426,9 +426,11 @@ p { font-size: 1rem; line-height: 1.85; color: var(--grey-text); }
 }
 .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
 .feature-card__icon {
-  font-size: 2.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
   margin-bottom: 1rem;
-  display: block;
 }
 .feature-card__title {
   font-family: var(--font-serif);
@@ -965,9 +967,10 @@ p { font-size: 1rem; line-height: 1.85; color: var(--grey-text); }
   .reviews-grid, .blog-grid, .experiences-grid, .features__grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid__item:first-child { grid-column: span 2; }
-  .ratings-bar { gap: 1rem; flex-wrap: wrap; padding: 1.25rem 1rem; }
+  .ratings-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 1.5rem 1.25rem; justify-items: center; }
   .ratings-divider { display: none; }
   .platforms-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; padding-top: 2rem; justify-items: center; }
+  .banner__bg { background-position: top center !important; }
   .contact-grid, .location-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
