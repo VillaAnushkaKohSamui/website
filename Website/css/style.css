@@ -950,26 +950,24 @@ p { font-size: 1rem; line-height: 1.85; color: var(--grey-text); }
 @media (max-width: 768px) {
   .nav__links { display: none; }
   .nav__hamburger { display: flex; }
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 1.9rem; }
-  .section { padding: 4rem 0; }
-  .grid-2, .grid-3, .villa-block { grid-template-columns: 1fr; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.7rem; }
+  h3 { font-size: 1.3rem; }
+  .container { padding: 0 1.25rem; }
+  .section { padding: 3.5rem 0; }
+  .grid-2, .grid-3, .villa-block { grid-template-columns: 1fr; gap: 2rem; }
   .villa-block--reverse .villa-block__image { order: 0; }
   .villa-block--reverse .villa-block__text { order: 0; }
-  .villa-block__text { padding: 2.5rem 2rem; }
-  .villa-block__image img { min-height: 300px; }
+  .villa-block__text { padding: 2rem 1.5rem; }
+  .villa-block__image img { min-height: 260px; }
   .reviews-grid, .blog-grid, .experiences-grid, .features__grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid__item:first-child { grid-column: span 2; }
-  .ratings-bar { gap: 1.5rem; }
+  .ratings-bar { gap: 1rem; flex-wrap: wrap; padding: 1.25rem 1rem; }
   .ratings-divider { display: none; }
-  .platforms-bar { gap: 2rem; }
+  .platforms-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1rem; padding-top: 2rem; }
   .contact-grid, .location-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
-  .booking-form { padding: 2rem 1.5rem; }
-  .intro__stats { grid-template-columns: repeat(3, 1fr); }
-  .page-hero { height: 45vh; }
-  .banner { background-attachment: scroll; }
-  .banner .banner__bg { background-attachment: scroll; }
-}
+  .booking-form { padding: 2rem 1.25rem; }
+  .int
