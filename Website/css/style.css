@@ -841,11 +841,13 @@ p { font-size: 1rem; line-height: 1.85; color: var(--grey-text); }
   inset: 0;
   background-size: cover;
   background-position: center;
+  pointer-events: none;
 }
 .page-hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(8,7,6,0.55) 0%, rgba(8,7,6,0.05) 100%);
+  pointer-events: none;
 }
 .page-hero__content {
   position: relative;
