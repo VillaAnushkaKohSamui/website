@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villa Anushka — Marketing Campaign</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #0a0a0a; color: #fff; }
+
+  /* ── NAV ── */
+  .campaign-nav {
+    display: flex; gap: 0; background: #111; border-bottom: 1px solid #222;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .campaign-nav button {
+    flex: 1; padding: 14px 10px; background: none; border: none;
+    color: #888; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent;
+    font-family: 'Arial', sans-serif;
+  }
+  .campaign-nav button.active { color: #c9a870; border-bottom-color: #c9a870; }
+  .campaign-nav button:hover { color: #fff; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ════════════════════════════════
+     1. INSTAGRAM CAROUSEL AD
+  ════════════════════════════════ */
+  .ig-frame {
+    max-width: 420px; margin: 40px auto;
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    color: #000;
+  }
+  .ig-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; border-bottom: 1px solid #eee;
+  }
+  .ig-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #c9a870, #8B6A30);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold; color: #fff; font-family: Arial;
+  }
+  .ig-username { font-size: 13px; font-weight: 700; font-family: Arial; }
+  .ig-location { font-size: 11px; color: #888; font-family: Arial; }
+  .ig-more { margin-left: auto; font-size: 20px; color: #888; cursor: pointer; font-family: Arial; }
+
+  .carousel-wrap { position: relative; overflow: hidden; }
+  .carousel-track {
+    display: flex; transition: transform 0.4s ease;
+  }
+  .carousel-slide {
+    min-width: 100%; position: relative;
+  }
+  .carousel-slide img {
+    width: 100%; height: 420px; object-fit: cover; display: block;
+  }
+  .slide-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.65));
+    padding: 50px 20px 20px;
+    color: #fff;
+  }
+  .slide-tag {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: #c9a870; font-family: Arial; margin-bottom: 5px;
+  }
+  .slide-headline {
+    font-size: 20px; line-height: 1.3; font-family: Georgia;
+  }
+
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 5px;
+    padding: 8px 0; background: #fff;
+  }
+  .carousel-dots span {
+    width: 5px; height: 5px; border-radius: 50%; background: #ddd; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .carousel-dots span.active { background: #3897f0; }
+
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
+    width: 32px; height: 32px; cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: all 0.2s;
+    font-family: Arial;
+  }
+  .carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+
+  .ig-actions {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 14px 6px; background: #fff;
+  }
+  .ig-action { font-size: 22px; cursor: pointer; font-family: Arial; }
+  .ig-save { margin-left: auto; }
+  .ig-likes { padding: 0 14px 6px; font-size: 13px; font-weight: 700; background: #fff; font-family: Arial; }
+  .ig-caption {
+    padding: 2px 14px 8px; font-size: 13px; background: #fff; font-family: Arial;
+    line-height: 1.5;
+  }
+  .ig-caption strong { font-weight: 700; }
+  .ig-hashtags { color: #3897f0; }
+  .ig-cta-bar {
+    margin: 0 14px 14px; padding: 12px 20px;
+    background: #c9a870; border-radius: 8px; text-align: center;
+    font-family: Arial; font-size: 13px; font-weight: 700;
+    color: #fff; cursor: pointer; letter-spacing: 0.5px;
+  }
+
+  /* ════════════════════════════════
+     2. FACEBOOK AD
+  ════════════════════════════════ */
+  .fb-frame {
+    max-width: 500px; margin: 40px auto;
+    background: #fff; border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden; color: #000;
+  }
+  .fb-header { padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+  .fb-page-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #c9a870; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: bold; color: #fff; font-family: Arial;
+  }
+  .fb-page-name { font-size: 14px; font-weight: 700; font-family: Arial; }
+  .fb-sponsored { font-size: 12px; color: #888; font-family: Arial; }
+  .fb-body-text { padding: 0 16px 12px; font-size: 14px; line-height: 1.5; font-family: Arial; }
+  .fb-image { position: relative; }
+  .fb-image img { width: 100%; height: 280px; object-fit: cover; display: block; }
+  .fb-image-overlay {
+    position: absolute; top: 20px; left: 20px; right: 20px;
+    text-align: center;
+  }
+  .fb-image-overlay .big-text {
+    font-size: 38px; font-family: Georgia; color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8); line-height: 1.2;
+  }
+  .fb-image-overlay .sub-text {
+    font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+    color: #c9a870; font-family: Arial; margin-top: 8px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+  }
+  .fb-link-bar {
+    background: #f0f2f5; padding: 14px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .fb-link-domain { font-size: 11px; color: #888; text-transform: uppercase; font-family: Arial; }
+  .fb-link-title { font-size: 14px; font-weight: 700; font-family: Arial; margin: 2px 0; }
+  .fb-link-desc { font-size: 13px; color: #888; font-family: Arial; }
+  .fb-book-btn {
+    background: #1877f2; color: #fff; border: none; border-radius: 6px;
+    padding: 8px 16px; font-size: 14px; font-weight: 700;
+    cursor: pointer; white-space: nowrap; font-family: Arial;
+  }
+  .fb-footer {
+    padding: 10px 16px; display: flex; gap: 20px;
+    font-size: 13px; color: #888; border-top: 1px solid #eee; font-family: Arial;
+  }
+  .fb-footer span { cursor: pointer; }
+  .fb-footer span:hover { text-decoration: underline; }
+
+  /* ════════════════════════════════
+     3. GOOGLE DISPLAY AD
+  ════════════════════════════════ */
+  .google-ads-wrap { padding: 30px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+
+  .gad {
+    position: relative; overflow: hidden; border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+  .gad img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .gad-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+  }
+  .gad-logo { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #c9a870; font-family: Arial; }
+  .gad-headline { font-size: 18px; font-family: Georgia; margin: 6px 0; line-height: 1.3; }
+  .gad-cta {
+    display: inline-block; background: #c9a870; color: #fff;
+    padding: 8px 16px; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; font-family: Arial; font-weight: 700; margin-top: 10px;
+    border-radius: 2px; cursor: pointer;
+  }
+  .gad-leaderboard { width: 728px; height: 90px; }
+  .gad-leaderboard .gad-overlay {
+    flex-direction: row; align-items: center; justify-content: space-between;
+    padding: 0 24px;
+  }
+  .gad-leaderboard .gad-info { flex: 1; }
+  .gad-leaderboard .gad-headline { font-size: 16px; margin: 2px 0; }
+
+  .gad-medium { width: 300px; height: 250px; }
+  .gad-large { width: 320px; height: 480px; }
+  .gad-square { width: 250px; height: 250px; }
+
+  .gad-label {
+    text-align: center; font-size: 10px; color: #555; margin-top: 6px;
+    font-family: Arial; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ════════════════════════════════
+     4. STRATEGY
+  ════════════════════════════════ */
+  .strategy { max-width: 860px; margin: 0 auto; padding: 50px 30px; }
+  .strategy h1 {
+    font-size: 36px; letter-spacing: -0.5px; margin-bottom: 6px;
+  }
+  .strategy .subtitle {
+    color: #c9a870; font-family: Arial; font-size: 13px;
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px;
+  }
+  .strategy h2 {
+    font-size: 18px; font-family: Arial; font-weight: 700;
+    color: #c9a870; letter-spacing: 1px; text-transform: uppercase;
+    margin: 40px 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid #222;
+  }
+  .strategy p { color: #ccc; line-height: 1.8; margin-bottom: 12px; font-family: Arial; font-size: 14px; }
+  .strategy strong { color: #fff; }
+
+  .audience-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .audience-card {
+    background: #161616; border: 1px solid #222; border-radius: 8px;
+    padding: 20px; border-left: 3px solid #c9a870;
+  }
+  .audience-card h3 { font-size: 15px; font-family: Arial; margin-bottom: 8px; }
+  .audience-card p { font-size: 13px; color: #999; line-height: 1.6; margin: 0; }
+
+  .channel-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: #161616; border: 1px solid #222; border-radius: 8px;
+    padding: 18px; margin-bottom: 12px;
+  }
+  .channel-icon {
+    width: 42px; height: 42px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .channel-row h3 { font-size: 14px; font-family: Arial; font-weight: 700; margin-bottom: 4px; }
+  .channel-row p { font-size: 13px; color: #999; line-height: 1.6; margin: 0; }
+
+  .copy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .copy-card {
+    background: #161616; border: 1px solid #222; border-radius: 8px; padding: 18px;
+  }
+  .copy-card .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #c9a870; font-family: Arial; margin-bottom: 8px; }
+  .copy-card .headline { font-size: 18px; font-family: Georgia; margin-bottom: 6px; line-height: 1.3; }
+  .copy-card .body { font-size: 12px; color: #999; line-height: 1.6; font-family: Arial; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi-card {
+    background: #161616; border: 1px solid #222; border-radius: 8px;
+    padding: 18px; text-align: center;
+  }
+  .kpi-card .num { font-size: 28px; font-family: Georgia; color: #c9a870; }
+  .kpi-card .kpi-label { font-size: 11px; color: #888; font-family: Arial; margin-top: 4px; letter-spacing: 0.5px; }
+
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 2px; background: #222;
+  }
+  .timeline-item { position: relative; margin-bottom: 24px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -28px; top: 8px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #c9a870; border: 2px solid #0a0a0a;
+  }
+  .timeline-item h3 { font-size: 14px; font-family: Arial; font-weight: 700; margin-bottom: 4px; }
+  .timeline-item p { font-size: 13px; color: #999; line-height: 1.6; font-family: Arial; margin: 0; }
+
+  /* ════════════════════════════════
+     5. INSTAGRAM POST GRID
+  ════════════════════════════════ */
+  .ig-grid-frame {
+    max-width: 480px; margin: 40px auto;
+    background: #fff; color: #000; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .ig-grid-header { padding: 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; }
+  .ig-grid-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    padding: 2px; display: flex;
+  }
+  .ig-grid-avatar-inner {
+    flex: 1; border-radius: 50%; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: bold; color: #c9a870;
+    font-family: 'Georgia', serif;
+  }
+  .ig-grid-stats { display: flex; gap: 20px; font-family: Arial; }
+  .ig-grid-stats .stat { text-align: center; }
+  .ig-grid-stats .stat .num { font-size: 16px; font-weight: 700; }
+  .ig-grid-stats .stat .lbl { font-size: 12px; color: #888; }
+  .ig-grid-name { font-size: 14px; font-weight: 700; font-family: Arial; }
+  .ig-grid-bio { font-size: 13px; font-family: Arial; color: #333; line-height: 1.4; }
+  .ig-grid-bio a { color: #3897f0; }
+  .ig-follow-btn {
+    margin: 0 16px 12px; width: calc(100% - 32px);
+    background: #3897f0; color: #fff; border: none; border-radius: 8px;
+    padding: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: Arial;
+  }
+  .ig-posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+  .ig-posts-grid .post-thumb { aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer; }
+  .ig-posts-grid .post-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+  .ig-posts-grid .post-thumb:hover img { transform: scale(1.05); }
+  .ig-posts-grid .post-thumb .post-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+    display: none; align-items: center; justify-content: center; gap: 16px;
+    color: #fff; font-family: Arial; font-size: 14px; font-weight: 700;
+  }
+  .ig-posts-grid .post-thumb:hover .post-overlay { display: flex; }
+
+  /* Responsive */
+  @media (max-width: 760px) {
+    .gad-leaderboard { width: 100%; height: auto; min-height: 90px; }
+    .copy-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="campaign-nav">
+  <button class="active" onclick="showTab('instagram')">Instagram Ad</button>
+  <button onclick="showTab('facebook')">Facebook Ad</button>
+  <button onclick="showTab('google')">Display Ads</button>
+  <button onclick="showTab('igprofile')">IG Content Plan</button>
+  <button onclick="showTab('strategy')">Campaign Strategy</button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     TAB 1: INSTAGRAM CAROUSEL AD
+══════════════════════════════════════ -->
+<div id="instagram" class="section active">
+  <div class="ig-frame">
+    <div class="ig-header">
+      <div class="ig-avatar">VA</div>
+      <div>
+        <div class="ig-username">villa.anushka</div>
+        <div class="ig-location">Koh Samui, Thailand</div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="track">
+
+        <div class="carousel-slide">
+          <img src="Website/images/hero-floating-breakfast.jpg" alt="Floating breakfast">
+          <div class="slide-overlay">
+            <div class="slide-tag">The Experience</div>
+            <div class="slide-headline">Breakfast floats.<br>So does your stress.</div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="Website/images/pool-panorama-view.jpg" alt="Pool panorama">
+          <div class="slide-overlay">
+            <div class="slide-tag">The View</div>
+            <div class="slide-headline">Your private infinity.<br>All of Chaweng below.</div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="Website/images/terrace-woman-ocean-view.jpg" alt="Terrace view">
+          <div class="slide-overlay">
+            <div class="slide-tag">The Space</div>
+            <div class="slide-headline">5 bedrooms.<br>One horizon that belongs to you.</div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="Website/images/celebrations.jpg" alt="Celebration dusk">
+          <div class="slide-overlay">
+            <div class="slide-tag">The Moment</div>
+            <div class="slide-headline">Some sunsets are<br>worth travelling for.</div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="Website/images/hero-terrace-dusk.jpg" alt="Terrace dusk">
+          <div class="slide-overlay">
+            <div class="slide-tag">Villa Anushka · Koh Samui</div>
+            <div class="slide-headline">Your private world<br>awaits.</div>
+          </div>
+        </div>
+
+      </div>
+      <button class="carousel-btn prev" onclick="slide(-1)">‹</button>
+      <button class="carousel-btn next" onclick="slide(1)">›</button>
+    </div>
+
+    <div class="carousel-dots" id="dots">
+      <span class="active"></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="ig-actions">
+      <span class="ig-action">♡</span>
+      <span class="ig-action">💬</span>
+      <span class="ig-action">↗</span>
+      <span class="ig-action ig-save" style="margin-left:auto">🔖</span>
+    </div>
+    <div class="ig-likes">1,247 likes</div>
+    <div class="ig-caption">
+      <strong>villa.anushka</strong> Not a hotel. Never a crowd. Just you, your people, and the Gulf of Thailand from your own infinity pool. 5 bedrooms · Private chef · Daily floating breakfast · Koh Samui's best view. Link in bio to check availability 🔗<br><br>
+      <span class="ig-hashtags">#VillaAnushka #KohSamui #LuxuryVilla #PrivatePool #ThailandTravel #InfinityPool #FloatingBreakfast #LuxuryTravel #VillaRental #KohSamuiVilla #PrivateVilla #IslandLife #TravelLuxury #FamilyVilla #HoneymoonGoals</span>
+    </div>
+    <div class="ig-cta-bar">Book Your Stay → villaanushkakohsamui.com</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: FACEBOOK AD
+══════════════════════════════════════ -->
+<div id="facebook" class="section">
+  <div class="fb-frame">
+    <div class="fb-header">
+      <div class="fb-page-icon">VA</div>
+      <div>
+        <div class="fb-page-name">Villa Anushka Koh Samui</div>
+        <div class="fb-sponsored">Sponsored · 🌍</div>
+      </div>
+    </div>
+    <div class="fb-body-text">
+      Imagine waking up in your own hillside villa with a private infinity pool overlooking all of Chaweng Bay. 5 luxury bedrooms, daily breakfast, private chef, and total privacy — just your family or group and the Gulf of Thailand. 🌊<br><br>
+      <strong>✓ Exclusive-use private villa</strong><br>
+      <strong>✓ Panoramic sea views from every room</strong><br>
+      <strong>✓ Floating breakfast experience included</strong><br>
+      <strong>✓ From €750/night for the entire villa</strong>
+    </div>
+    <div class="fb-image">
+      <img src="Website/images/pool-panorama-view.jpg" alt="Villa Anushka Pool">
+      <div class="fb-image-overlay">
+        <div class="big-text">Your Koh Samui.<br>Entirely Private.</div>
+        <div class="sub-text">Villa Anushka · Koh Samui, Thailand</div>
+      </div>
+    </div>
+    <div class="fb-link-bar">
+      <div>
+        <div class="fb-link-domain">villaanushkakohsamui.com</div>
+        <div class="fb-link-title">Villa Anushka — Private Luxury Villa, Koh Samui</div>
+        <div class="fb-link-desc">5 bedrooms · Infinity pool · Sea view · From €750/night</div>
+      </div>
+      <button class="fb-book-btn">Book Now</button>
+    </div>
+    <div class="fb-footer">
+      <span>👍 Like</span>
+      <span>💬 Comment</span>
+      <span>↗ Share</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: GOOGLE DISPLAY ADS
+══════════════════════════════════════ -->
+<div id="google" class="section">
+  <div class="google-ads-wrap">
+
+    <!-- Leaderboard 728×90 -->
+    <div style="width:100%">
+      <div class="gad gad-leaderboard">
+        <img src="Website/images/pool-panorama-view.jpg" alt="">
+        <div class="gad-overlay">
+          <div class="gad-info">
+            <div class="gad-logo">Villa Anushka · Koh Samui</div>
+            <div class="gad-headline">Your private infinity pool. All of Koh Samui below.</div>
+          </div>
+          <div class="gad-cta">Book Now</div>
+        </div>
+      </div>
+      <div class="gad-label">Leaderboard 728×90</div>
+    </div>
+
+    <!-- Medium Rectangle 300×250 -->
+    <div>
+      <div class="gad gad-medium">
+        <img src="Website/images/hero-floating-breakfast.jpg" alt="">
+        <div class="gad-overlay">
+          <div class="gad-logo">Villa Anushka</div>
+          <div class="gad-headline">Float above Koh Samui. Breakfast included.</div>
+          <div class="gad-cta">Check Availability</div>
+        </div>
+      </div>
+      <div class="gad-label">Medium Rectangle 300×250</div>
+    </div>
+
+    <!-- Large Rectangle 300×250 -->
+    <div>
+      <div class="gad gad-medium">
+        <img src="Website/images/hero-terrace-dusk.jpg" alt="">
+        <div class="gad-overlay">
+          <div class="gad-logo">Koh Samui · Private Villa</div>
+          <div class="gad-headline">5 bedrooms. One view. Entirely yours.</div>
+          <div class="gad-cta">Explore Villa</div>
+        </div>
+      </div>
+      <div class="gad-label">Medium Rectangle 300×250</div>
+    </div>
+
+    <!-- Half Page 300×600 -->
+    <div>
+      <div class="gad gad-large">
+        <img src="Website/images/terrace-woman-ocean-view.jpg" alt="">
+        <div class="gad-overlay">
+          <div>
+            <div class="gad-logo">Villa Anushka · Koh Samui</div>
+            <div class="gad-headline" style="font-size:24px">Your private horizon. Your private paradise.</div>
+            <div style="font-size:13px;color:#ccc;font-family:Arial;margin-top:10px;line-height:1.6">
+              5 luxury bedrooms · Infinity pool · Sea views · Private chef · Daily floating breakfast
+            </div>
+            <div class="gad-cta" style="margin-top:16px">Book Your Stay</div>
+          </div>
+        </div>
+      </div>
+      <div class="gad-label">Half Page 300×600</div>
+    </div>
+
+    <!-- Square 250×250 -->
+    <div>
+      <div class="gad gad-square">
+        <img src="Website/images/celebrations.jpg" alt="">
+        <div class="gad-overlay">
+          <div class="gad-logo">Villa Anushka</div>
+          <div class="gad-headline" style="font-size:16px">Celebrate in style. Koh Samui.</div>
+          <div class="gad-cta" style="font-size:10px">Book Now</div>
+        </div>
+      </div>
+      <div class="gad-label">Square 250×250</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: INSTAGRAM CONTENT PLAN
+══════════════════════════════════════ -->
+<div id="igprofile" class="section">
+  <div class="ig-grid-frame">
+    <div class="ig-grid-header">
+      <div class="ig-grid-avatar">
+        <div class="ig-grid-avatar-inner">VA</div>
+      </div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-family:Arial;font-size:15px;margin-bottom:8px">villa.anushka</div>
+        <div class="ig-grid-stats">
+          <div class="stat"><div class="num">9</div><div class="lbl">posts</div></div>
+          <div class="stat"><div class="num">1.2K</div><div class="lbl">followers</div></div>
+          <div class="stat"><div class="num">48</div><div class="lbl">following</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 16px 8px">
+      <div class="ig-grid-name">Villa Anushka Koh Samui 🌊</div>
+      <div class="ig-grid-bio">
+        Private luxury villa · 5 bedrooms · Infinity pool<br>
+        Chaweng, Koh Samui 🇹🇭<br>
+        <a>villaanushkakohsamui.com</a>
+      </div>
+    </div>
+    <button class="ig-follow-btn">Follow</button>
+
+    <div class="ig-posts-grid">
+      <div class="post-thumb">
+        <img src="Website/images/hero-floating-breakfast.jpg" alt="">
+        <div class="post-overlay"><span>♡ 342</span><span>💬 18</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/pool-panorama-view.jpg" alt="">
+        <div class="post-overlay"><span>♡ 891</span><span>💬 34</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/celebrations.jpg" alt="">
+        <div class="post-overlay"><span>♡ 567</span><span>💬 22</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/terrace-woman-ocean-view.jpg" alt="">
+        <div class="post-overlay"><span>♡ 445</span><span>💬 15</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/hero-terrace-dusk.jpg" alt="">
+        <div class="post-overlay"><span>♡ 723</span><span>💬 41</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/bedroom-sea-view.jpg" alt="">
+        <div class="post-overlay"><span>♡ 312</span><span>💬 9</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/pool-beanbag-coconut.jpg" alt="">
+        <div class="post-overlay"><span>♡ 498</span><span>💬 27</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/wellness-bathtub-view.jpg" alt="">
+        <div class="post-overlay"><span>♡ 389</span><span>💬 13</span></div>
+      </div>
+      <div class="post-thumb">
+        <img src="Website/images/master-bedroom-view.jpg" alt="">
+        <div class="post-overlay"><span>♡ 276</span><span>💬 8</span></div>
+      </div>
+    </div>
+
+    <div style="padding:16px;font-family:Arial;font-size:13px;border-top:1px solid #eee">
+      <div style="font-weight:700;margin-bottom:10px">📅 Content Calendar — Weekly Rhythm</div>
+      <div style="color:#333;line-height:1.8">
+        <strong>Mon</strong> — Pool/view shot · "Start the week right" caption<br>
+        <strong>Wed</strong> — Lifestyle (breakfast, chef, wellness) · Story poll: "Pool or beach today?"<br>
+        <strong>Fri</strong> — Weekend availability push · Reel: morning routine at the villa<br>
+        <strong>Sun</strong> — Guest testimonial / review screenshot · Re-share guest content<br>
+        <strong>Daily Stories</strong> — Behind the scenes, sunset countdown, local tips
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: STRATEGY DOCUMENT
+══════════════════════════════════════ -->
+<div id="strategy" class="section">
+  <div class="strategy">
+    <h1>Villa Anushka</h1>
+    <div class="subtitle">Marketing Campaign Strategy · 2026</div>
+
+    <h2>Campaign Concept</h2>
+    <p>The central idea: <strong>"Your Private Horizon."</strong> Villa Anushka is not a hotel room with a view — it is a private world perched above Koh Samui where a group or family has the entire villa, pool, and panorama exclusively to themselves. Every campaign asset should communicate this sense of exclusive ownership of a jaw-dropping experience.</p>
+    <p>The floating breakfast photo and the infinity pool panorama are your two hero assets. They are both scroll-stopping and deeply aspirational — the type of imagery that makes someone screenshot and send to a group chat. Lead every ad with these.</p>
+
+    <h2>Target Audiences</h2>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <h3>🏖 Affluent Families</h3>
+        <p>Multi-generational trips, summer or Christmas holidays, need space and privacy. Budget: €3,000–8,000+/week. Key message: space, safety, staff, activities for all ages.</p>
+      </div>
+      <div class="audience-card">
+        <h3>💑 Honeymoon Couples</h3>
+        <p>Southeast Asia is a top honeymoon destination. Couples seeking exclusivity and once-in-a-lifetime experiences. Key message: romance, floating breakfast, private pool, sunsets.</p>
+      </div>
+      <div class="audience-card">
+        <h3>🥂 Celebration Groups</h3>
+        <p>Birthday milestones (40th, 50th), bachelorette, anniversary trips. Groups of 6–10 who want a private space to celebrate. Key message: the villa is yours entirely — no strangers.</p>
+      </div>
+      <div class="audience-card">
+        <h3>💼 Corporate Retreats</h3>
+        <p>Small executive teams (6–10 people) for offsites, strategy weeks, or incentive trips. Key message: privacy, connectivity, full catering, memorable experience.</p>
+      </div>
+      <div class="audience-card">
+        <h3>🧘 Wellness Seekers</h3>
+        <p>Yoga retreats, detox trips, digital detox holidays. Premium wellness tourism is booming. Key message: bathtub with sea view, yoga classes, tranquility, chef-cooked healthy food.</p>
+      </div>
+      <div class="audience-card">
+        <h3>🌏 Long-Stay Nomads</h3>
+        <p>Remote workers seeking 2–4 week stays in premium locations. Key message: high-speed WiFi, quiet space, weekly rates, full household staff.</p>
+      </div>
+    </div>
+
+    <h2>Ad Copy — Hero Lines</h2>
+    <div class="copy-grid">
+      <div class="copy-card">
+        <div class="label">Hero Line 1 · Pool</div>
+        <div class="headline">"Your private infinity pool. Their only view: you."</div>
+        <div class="body">Use with: pool-panorama-view.jpg / hero-floating-breakfast.jpg</div>
+      </div>
+      <div class="copy-card">
+        <div class="label">Hero Line 2 · Breakfast</div>
+        <div class="headline">"Breakfast doesn't get better than this."</div>
+        <div class="body">Use with: hero-floating-breakfast.jpg. Add subline: "Floating in your private pool, overlooking all of Chaweng."</div>
+      </div>
+      <div class="copy-card">
+        <div class="label">Hero Line 3 · Privacy</div>
+        <div class="headline">"Not a hotel. Never a crowd. Just you."</div>
+        <div class="body">Use with: terrace-woman-ocean-view.jpg. Emphasize exclusive-use concept.</div>
+      </div>
+      <div class="copy-card">
+        <div class="label">Hero Line 4 · Families</div>
+        <div class="headline">"5 bedrooms. One horizon. The holiday they'll never forget."</div>
+        <div class="body">Use with: terrace-woman-ocean-view.jpg or pool-panorama-view.jpg. Target family groups.</div>
+      </div>
+      <div class="copy-card">
+        <div class="label">Hero Line 5 · Sunset</div>
+        <div class="headline">"Some sunsets are worth travelling for."</div>
+        <div class="body">Use with: celebrations.jpg (chandelier dusk shot). Perfect for Instagram Reels cover.</div>
+      </div>
+      <div class="copy-card">
+        <div class="label">Hero Line 6 · Romance</div>
+        <div class="headline">"Where honeymoons become legends."</div>
+        <div class="body">Use with: hero-terrace-dusk.jpg. Target newly engaged / honeymoon search terms.</div>
+      </div>
+    </div>
+
+    <h2>Channel Strategy</h2>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:#833ab4">📸</div>
+      <div>
+        <h3>Instagram · Organic + Paid</h3>
+        <p><strong>Reels:</strong> 30–60 sec morning-to-sunset tours using existing photos in slideshow format with music. <strong>Carousels:</strong> "A day at Villa Anushka" — 8-slide story format. <strong>Stories:</strong> Daily — poll "Where would you have breakfast?", countdowns to availability. <strong>Paid:</strong> Target users who follow luxury villa accounts, Koh Samui hashtags, travel influencers. Budget €500–1,000/month.</p>
+      </div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:#1877f2">📘</div>
+      <div>
+        <h3>Facebook · Paid Carousel & Video Ads</h3>
+        <p>Target affluent families and couples in UK, Europe, Australia, Middle East. Use interest targeting: luxury travel, Airbnb Luxe, Booking.com, family holidays, honeymoon. Retarget website visitors with a special offer (early booking discount). Budget €800–1,500/month.</p>
+      </div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:#4285f4">🔍</div>
+      <div>
+        <h3>Google Search + Display</h3>
+        <p>Search: Bid on "luxury villa koh samui", "private pool villa thailand", "koh samui villa 5 bedroom", "koh samui family villa", "honeymoon villa thailand". Display: Retargeting on travel sites. Budget €400–800/month.</p>
+      </div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:#e60023">📌</div>
+      <div>
+        <h3>Pinterest · Organic</h3>
+        <p>Create boards: "Koh Samui Dream Holiday", "Infinity Pool Inspiration", "Luxury Family Villa". Pin the pool panorama and floating breakfast with rich keywords. Pinterest drives high-intent travel planning traffic — free and long-lasting.</p>
+      </div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:#c9a870">🤝</div>
+      <div>
+        <h3>Travel Influencers</h3>
+        <p>Invite 1–2 mid-tier influencers (50K–300K followers) for a complimentary 3-night stay in exchange for 1 Reel + 3 Stories + 1 feed post. Focus: luxury travel, family travel, or couples travel niches. This single campaign can generate millions of impressions and bookings that pay back the hosted stay many times over.</p>
+      </div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:#2d2d2d">🏨</div>
+      <div>
+        <h3>OTA Listings (Airbnb Luxe, Booking.com, VRBO)</h3>
+        <p>Ensure all listings use the pool panorama as the hero image. Write descriptions that lead with the view and the floating breakfast experience — these are the two features most likely to trigger a booking inquiry. Keep calendar up to date and respond to inquiries within 2 hours.</p>
+      </div>
+    </div>
+
+    <h2>Key Performance Indicators</h2>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="num">75%</div>
+        <div class="kpi-label">Target occupancy rate</div>
+      </div>
+      <div class="kpi-card">
+        <div class="num">4.9★</div>
+        <div class="kpi-label">Review score target</div>
+      </div>
+      <div class="kpi-card">
+        <div class="num">5K</div>
+        <div class="kpi-label">IG followers in 6 months</div>
+      </div>
+      <div class="kpi-card">
+        <div class="num">€3</div>
+        <div class="kpi-label">Max cost per click (Google)</div>
+      </div>
+    </div>
+
+    <h2>Launch Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Week 1–2 · Foundation</h3>
+        <p>Set up Instagram business account (@villa.anushka). Optimise all OTA listings with new hero images. Create Facebook page. Set up Google Analytics and Meta Pixel on the website.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Week 3–4 · Content Creation</h3>
+        <p>Create 12 Reels from existing photos using CapCut or InShot with trending audio. Write 30 caption templates. Create Pinterest boards. Schedule 2 posts/week for 6 weeks.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Month 2 · Paid Launch</h3>
+        <p>Launch Facebook carousel ad targeting UK, Germany, Australia, UAE. Launch Google Search campaign for high-intent keywords. Set €50/day budget to start. Monitor and optimise weekly.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Month 3 · Influencer Campaign</h3>
+        <p>Reach out to 5–8 travel influencers with a compelling hosted stay pitch. Target accounts with high engagement rates (4%+) in luxury or family travel. One great influencer post can outperform months of paid ads.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Month 4–6 · Scale</h3>
+        <p>Double budget on best-performing ad sets. Run seasonal campaigns (Christmas, Easter, summer school holidays). Build email list from website visitors for direct booking offers.</p>
+      </div>
+    </div>
+
+    <h2>Your Two Power Images</h2>
+    <p>Based on the photos in your folder, these two should lead every campaign:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+      <div>
+        <img src="Website/images/hero-floating-breakfast.jpg" alt="Floating breakfast" style="width:100%;border-radius:8px;display:block">
+        <p style="text-align:center;margin-top:8px;font-size:12px;color:#888">HERO IMAGE 1 · The Floating Breakfast<br>Most likely to go viral · Use on all platforms</p>
+      </div>
+      <div>
+        <img src="Website/images/pool-panorama-view.jpg" alt="Pool panorama" style="width:100%;border-radius:8px;display:block">
+        <p style="text-align:center;margin-top:8px;font-size:12px;color:#888">HERO IMAGE 2 · The Panorama<br>Establishes the "wow" factor · Lead every listing</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('#dots span');
+const track = document.getElementById('track');
+
+function slide(dir) {
+  current = (current + dir + slides.length) % slides.length;
+  track.style.transform = `translateX(-${current * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+dots.forEach((d, i) => d.addEventListener('click', () => {
+  current = i;
+  track.style.transform = `translateX(-${current * 100}%)`;
+  dots.forEach((dot, j) => dot.classList.toggle('active', j === current));
+}));
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.campaign-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
