@@ -94,7 +94,6 @@
 
       <!-- Category filter -->
       
-
       <!-- Featured post -->
       <div class="blog-featured fade-up" data-category="koh-samui">
         <div class="blog-featured__img">
@@ -113,7 +112,7 @@
 
         <div class="blog-card fade-up">
           <div class="blog-card__img">
-            <img src="../images/boat-trips.jpg" alt="Best time to visit Koh Samui" loading="lazy" />
+            <img src="../images/boat-trips.jpg" alt="Besot time to visit Koh Samui" loading="lazy" />
           </div>
           <div class="blog-card__body">
             <h3>Best Time to Visit Koh Samui</h3>
@@ -205,47 +204,6 @@
       <div class="footer__bottom"><span>&copy; 2026 Villa Anushka Koh Samui</span> &nbsp;&middot;&nbsp; <a href="../privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="../terms.html">Terms</a></div>
     </div>
   </footer>
-
   <script src="../js/main.js"></script>
-  <script>
-    // Category filter
-    const cats = document.querySelectorAll('.blog-cat');
-    const featured = document.querySelector('.blog-featured[data-category]');
-    const cards = document.querySelectorAll('.blog-card[data-category]');
-    const dividers = document.querySelectorAll('.blog-divider');
-    const sectionTitles = document.querySelectorAll('.blog-section-title');
-
-    cats.forEach(cat => {
-      cat.addEventListener('click', () => {
-        cats.forEach(c => c.classList.remove('active'));
-        cat.classList.add('active');
-        const filter = cat.dataset.filter;
-
-        // Featured
-        if (featured) {
-          featured.style.display = (filter === 'all' || featured.dataset.category === filter) ? '' : 'none';
-        }
-        // Cards
-        cards.forEach(card => {
-          card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
-        });
-        // Hide empty section titles and dividers when filtered
-        document.querySelectorAll('.blog-grid').forEach(grid => {
-          const visibleCards = grid.querySelectorAll('.blog-card:not([style*="display: none"])');
-          const titleEl = grid.previousElementSibling;
-          const dividerEl = titleEl ? titleEl.previousElementSibling : null;
-          const visible = filter === 'all' || visibleCards.length > 0;
-          if (titleEl && titleEl.classList.contains('blog-section-title')) titleEl.style.display = visible ? '' : 'none';
-          if (dividerEl && dividerEl.classList.contains('blog-divider')) dividerEl.style.display = visible ? '' : 'none';
-        });
-        // Handle featured divider
-        const featuredDivider = featured ? featured.nextElementSibling : null;
-        if (featuredDivider && featuredDivider.classList.contains('blog-divider')) {
-          featuredDivider.style.display = (filter === 'all' || featured.style.display !== 'none') ? '' : 'none';
-        }
-      });
-    });
-  </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
