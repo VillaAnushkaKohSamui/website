@@ -68,6 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   }
 
+  // --- Gallery filter tabs ---
+  const galleryTabs = document.querySelectorAll('.gallery-tab');
+  const galleryItems = document.querySelectorAll('.gallery-grid__item');
+  if (galleryTabs.length && galleryItems.length) {
+    galleryTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        galleryTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        galleryItems.forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
+
   // --- Active nav link ---
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav__links a').forEach(a => {
